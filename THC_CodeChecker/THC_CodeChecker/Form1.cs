@@ -30,7 +30,7 @@ namespace HTC_CodeChecker
             {
                 
                 txtFile.Text = openDialog.FileName;
-                selectFileName = Path.GetFileName(txtFile.Text);
+                selectFileName = Path.GetFileNameWithoutExtension(txtFile.Text);
                 ReadPinFile(txtFile.Text);
                 lblOrignal.Text = string.Format("原始檔案內容 {0}筆", lsOrignal.Items.Count);
             }
@@ -51,8 +51,14 @@ namespace HTC_CodeChecker
             {
                 lsOrignal.Items.Add(strLine);
                 iCount++;
+                if (iCount % 1000 == 0)
+                {
+                    groupBox1.Text = "PIN_檔案 " + iCount.ToString();
+                    Application.DoEvents();
+                }
             }
             streamR.Close();
+            groupBox1.Text = "PIN_檔案 " + iCount.ToString();
             Cursor = Cursors.Default;
         }
 
@@ -91,6 +97,8 @@ namespace HTC_CodeChecker
             int iCount = 0;
             bool bFind = false;
 
+            lbl_state.Text = "比對資料中";
+            Application.DoEvents();
             foreach (DataRow row in codeTable.Rows)
             {
                 strCode = row[0].ToString();
@@ -111,22 +119,34 @@ namespace HTC_CodeChecker
                 Application.DoEvents();
             }
 
+            lbl_state.Text = "";
+            Application.DoEvents();
+            progressBar1.Maximum = removeStone.Count;
+            iCount = 0;
             foreach (DataRow row in removeStone)
             {
                 lsDuplicate.Items.Add(row[0].ToString());
+                iCount++;
+                progressBar1.Value = iCount;
             }
-
+            lbl_state.Text = "移除重覆資料中";
+            Application.DoEvents();
+            progressBar1.Maximum = removeStone.Count;
             foreach (DataRow row in removeStone)
             {
                 codeTable.Rows.Remove(row);
+                iCount++;
+                progressBar1.Value = iCount;
             }
-
+            lbl_state.Text = "整理單一中";
+            Application.DoEvents();
+            progressBar1.Maximum = codeTable.Rows.Count;
             foreach (DataRow row in codeTable.Rows)
             {
                 lsSingle.Items.Add(row[0].ToString());
+                iCount++;
+                progressBar1.Value = iCount;
             }
-
-            
 
             //lsSingle.DataSource = codeTable;
             //lsDuplicate.DataSource = removeStone;

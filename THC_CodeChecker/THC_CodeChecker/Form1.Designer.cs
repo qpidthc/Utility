@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtFile = new System.Windows.Forms.TextBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnOpen = new System.Windows.Forms.Button();
+            this.txtFile = new System.Windows.Forms.TextBox();
             this.lsOrignal = new System.Windows.Forms.ListBox();
             this.lblOrignal = new System.Windows.Forms.Label();
             this.btnStrat = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             this.lsDuplicate = new System.Windows.Forms.ListBox();
             this.lblSingle = new System.Windows.Forms.Label();
             this.lblDuplicate = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lbl_state = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,14 +60,12 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PIN_檔案";
             // 
-            // txtFile
+            // progressBar1
             // 
-            this.txtFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtFile.Location = new System.Drawing.Point(27, 41);
-            this.txtFile.Name = "txtFile";
-            this.txtFile.Size = new System.Drawing.Size(822, 31);
-            this.txtFile.TabIndex = 0;
+            this.progressBar1.Location = new System.Drawing.Point(27, 79);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(822, 23);
+            this.progressBar1.TabIndex = 2;
             // 
             // btnOpen
             // 
@@ -79,13 +78,22 @@
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
+            // txtFile
+            // 
+            this.txtFile.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtFile.Location = new System.Drawing.Point(27, 41);
+            this.txtFile.Name = "txtFile";
+            this.txtFile.Size = new System.Drawing.Size(822, 27);
+            this.txtFile.TabIndex = 0;
+            // 
             // lsOrignal
             // 
             this.lsOrignal.FormattingEnabled = true;
-            this.lsOrignal.ItemHeight = 23;
+            this.lsOrignal.ItemHeight = 18;
             this.lsOrignal.Location = new System.Drawing.Point(13, 168);
             this.lsOrignal.Name = "lsOrignal";
-            this.lsOrignal.Size = new System.Drawing.Size(519, 579);
+            this.lsOrignal.Size = new System.Drawing.Size(519, 562);
             this.lsOrignal.TabIndex = 1;
             // 
             // lblOrignal
@@ -94,7 +102,7 @@
             this.lblOrignal.ForeColor = System.Drawing.Color.Blue;
             this.lblOrignal.Location = new System.Drawing.Point(12, 142);
             this.lblOrignal.Name = "lblOrignal";
-            this.lblOrignal.Size = new System.Drawing.Size(124, 24);
+            this.lblOrignal.Size = new System.Drawing.Size(99, 19);
             this.lblOrignal.TabIndex = 2;
             this.lblOrignal.Text = "原始檔案內容";
             // 
@@ -124,20 +132,20 @@
             // 
             this.lsSingle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lsSingle.FormattingEnabled = true;
-            this.lsSingle.ItemHeight = 23;
+            this.lsSingle.ItemHeight = 18;
             this.lsSingle.Location = new System.Drawing.Point(539, 211);
             this.lsSingle.Name = "lsSingle";
-            this.lsSingle.Size = new System.Drawing.Size(461, 326);
+            this.lsSingle.Size = new System.Drawing.Size(461, 310);
             this.lsSingle.TabIndex = 5;
             // 
             // lsDuplicate
             // 
             this.lsDuplicate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lsDuplicate.FormattingEnabled = true;
-            this.lsDuplicate.ItemHeight = 23;
+            this.lsDuplicate.ItemHeight = 18;
             this.lsDuplicate.Location = new System.Drawing.Point(539, 578);
             this.lsDuplicate.Name = "lsDuplicate";
-            this.lsDuplicate.Size = new System.Drawing.Size(461, 165);
+            this.lsDuplicate.Size = new System.Drawing.Size(461, 148);
             this.lsDuplicate.TabIndex = 6;
             // 
             // lblSingle
@@ -147,7 +155,7 @@
             this.lblSingle.ForeColor = System.Drawing.Color.Blue;
             this.lblSingle.Location = new System.Drawing.Point(538, 184);
             this.lblSingle.Name = "lblSingle";
-            this.lblSingle.Size = new System.Drawing.Size(361, 24);
+            this.lblSingle.Size = new System.Drawing.Size(283, 19);
             this.lblSingle.TabIndex = 7;
             this.lblSingle.Text = "獨立資料內容 (儲存檔案 pin_checked.txt)";
             // 
@@ -158,22 +166,25 @@
             this.lblDuplicate.ForeColor = System.Drawing.Color.Blue;
             this.lblDuplicate.Location = new System.Drawing.Point(538, 548);
             this.lblDuplicate.Name = "lblDuplicate";
-            this.lblDuplicate.Size = new System.Drawing.Size(365, 24);
+            this.lblDuplicate.Size = new System.Drawing.Size(286, 19);
             this.lblDuplicate.TabIndex = 8;
             this.lblDuplicate.Text = "重複資料內容(儲存檔案 pin_duplicate.txt)";
             // 
-            // progressBar1
+            // lbl_state
             // 
-            this.progressBar1.Location = new System.Drawing.Point(27, 79);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(822, 23);
-            this.progressBar1.TabIndex = 2;
+            this.lbl_state.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_state.ForeColor = System.Drawing.Color.Purple;
+            this.lbl_state.Location = new System.Drawing.Point(127, 142);
+            this.lbl_state.Name = "lbl_state";
+            this.lbl_state.Size = new System.Drawing.Size(283, 19);
+            this.lbl_state.TabIndex = 9;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1013, 766);
+            this.Controls.Add(this.lbl_state);
             this.Controls.Add(this.lblDuplicate);
             this.Controls.Add(this.lblSingle);
             this.Controls.Add(this.lsDuplicate);
@@ -209,6 +220,7 @@
         private System.Windows.Forms.Label lblSingle;
         private System.Windows.Forms.Label lblDuplicate;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label lbl_state;
     }
 }
 
