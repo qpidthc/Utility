@@ -14,6 +14,7 @@ namespace HTC_CodeChecker
 {
     public partial class Form1 : Form
     {
+        string selectFileName = "";
         public Form1()
         {
             InitializeComponent();
@@ -27,7 +28,9 @@ namespace HTC_CodeChecker
             
             if (openDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                txtFile.Text = openDialog.FileName;                
+                
+                txtFile.Text = openDialog.FileName;
+                selectFileName = Path.GetFileName(txtFile.Text);
                 ReadPinFile(txtFile.Text);
                 lblOrignal.Text = string.Format("原始檔案內容 {0}筆", lsOrignal.Items.Count);
             }
@@ -152,7 +155,7 @@ namespace HTC_CodeChecker
         {
             try
             {
-                string strFile1 = path + "\\pin_checked.txt";
+                string strFile1 = path + "\\" + selectFileName + "_checked.txt";
                 StreamWriter streamW = new StreamWriter(strFile1);
                 foreach (object line in lsSingle.Items)
                 {
@@ -160,7 +163,7 @@ namespace HTC_CodeChecker
                 }
                 streamW.Close();
 
-                string strFile2 = path + "\\pin_duplicate.txt";
+                string strFile2 = path + "\\" + selectFileName + "_duplicate.txt";
                 streamW = new StreamWriter(strFile2);
                 foreach (object line in lsDuplicate.Items)
                 {
